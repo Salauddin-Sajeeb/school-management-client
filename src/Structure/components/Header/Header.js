@@ -21,8 +21,7 @@ const Header = () => {
           <div class="row h-100 align-items-center">
             <div class="col-12 ">
 
-              <h1 style={{ color: 'white', fontWeight: 'bold', fontSize: '50px', display: 'flex', justifyContent: 'center', alignItems: 'center' }} class=""><span style={{ color: 'orange', fontSize: '55px' }}>School</span>Manager</h1>
-              <p style={{ color: 'white', fontWeight: '400', fontSize: '35px', display: 'flex', justifyContent: 'center', alignItems: 'center' }} class="">WELCOME TO <span className='' style={{ color: 'orange', fontSize: '40px', paddingLeft: '5px', fontWeight: 'bold' }}>School Management System</span></p>
+             
             </div>
           </div>
         </div>

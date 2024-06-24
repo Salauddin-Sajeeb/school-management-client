@@ -90,6 +90,7 @@ import NoticeOption from "./Structure/Dashboard/StudentDashboard/StudentDashboar
 import AdminNotice from "./Structure/Dashboard/SchoolDashboard/Notices/AdminNotice";
 import SubjectRegistration from "./Structure/Dashboard/SchoolDashboard/SubjectRegistration/SubjectRegistration";
 import ListNotice from "./Structure/Dashboard/ViewerDashboard/ViewerDashboardFeatures/Viewer Notice/ViewerNoticeList";
+import SchoolProfile from "./Structure/Dashboard/SchoolDashboard/SchoolProfile/SchoolProfile";
 
 
 function App(props) {
@@ -101,7 +102,7 @@ function App(props) {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<Home />} />
+         
 
           <Route
             path="/super-admin"
@@ -172,6 +173,10 @@ function App(props) {
           <Route path="/create-exam" element={<CreateExam />} />
           <Route path="/newExam" element={<CreateNewExam />} />
           <Route
+            path="/"
+            element={<Login setUser={[setUser_code, setUser_type]} />}
+          />
+           <Route
             path="/login"
             element={<Login setUser={[setUser_code, setUser_type]} />}
           />
@@ -203,6 +208,10 @@ function App(props) {
           <Route path="/period-create" element={<SchoolAdminPeriod />} />
           <Route path="/add-student" element={<AddStudent />} />
           <Route path="/add-teacher" element={<Addteacher />} />
+          <Route
+            path="/schoolprofile"
+            element={<SchoolProfile  />}
+          />
           <Route path="/subjectregistration" element={<SubjectRegistration />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/teacher-feature" element={<TeacherFeatures />} />

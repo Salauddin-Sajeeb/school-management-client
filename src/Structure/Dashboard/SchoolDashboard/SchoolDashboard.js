@@ -48,7 +48,7 @@ const SchoolDashboard = () => {
                 localStorage.setItem("user_type", "");
                 navigate("/login");
               }} class="dropdown-item">Log out</a></li>
-              <li><a class="dropdown-item" href="#">profile</a></li>
+              <li><a class="dropdown-item" href="/schoolprofile">profile</a></li>
 
             </ul>
           </div>
