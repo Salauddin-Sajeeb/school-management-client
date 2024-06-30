@@ -37,7 +37,7 @@ const Login = (props) => {
 
     headers.append('Content-Type', 'application/json');
     headers.append('Accept', 'application/json');
-    headers.append('Authorization', 'Basic ' + encode(user_code + ":" +  password));
+  
     headers.append('Origin','http://localhost:3000');
     fetch(`${process.env.REACT_APP_NODE_API}/api/users/login`, {
       method: "POST",
