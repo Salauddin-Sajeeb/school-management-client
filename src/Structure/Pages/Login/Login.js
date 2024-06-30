@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
@@ -32,6 +33,12 @@ const Login = (props) => {
     }
   };
   const handleSubmit = () => {
+    let headers = new Headers();
+
+    headers.append('Content-Type', 'application/json');
+    headers.append('Accept', 'application/json');
+    headers.append('Authorization', 'Basic ' + base64.encode(user_code + ":" +  password));
+    headers.append('Origin','http://localhost:3000');
     fetch(`${process.env.REACT_APP_NODE_API}/api/users/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
