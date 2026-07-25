@@ -1,13 +1,11 @@
 import axios from 'axios'
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 import React, { useEffect, useState } from 'react'
-import { Modal } from 'react-bootstrap';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import profile from "../../images/profile/profile.png";
 
 const AcademicCalender = () => {
+   const navigate = useNavigate();
    const [inputDate, setInputDate] = useState('')
    const [topic, setTopic] = useState('')
    const [calender, setcalender] = useState([])
@@ -27,7 +25,7 @@ const AcademicCalender = () => {
       localStorage.getItem("access_token"));
    const checkLoggedIn = () => {
       if (localStorage.getItem("user_type") != 4) {
-         Navigate("/login");
+         navigate("/login");
       }
    };
    useEffect(() => {
@@ -287,45 +285,32 @@ const AcademicCalender = () => {
             }
 
          </div>
-         <Modal show={showModal} onHide={handleClose} animation={false}>
-            <Modal.Header closeButton>
-               <Modal.Title>Update Calender</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-               <Form>
-                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                     <Form.Label>Schedule Type</Form.Label>
-                     <Form.Control
-                        type="text"
-                        value={topic}
-                        onChange={handleTopic}
-                     />
-                  </Form.Group>
-                  <Form.Group
-                     className="mb-3"
-                     controlId="exampleForm.ControlTextarea1"
-                  >
-                     <Form.Label>Schedule Date</Form.Label>
-                     <Form.Control
-                        type="text"
-                        value={inputDate}
-                        onChange={handleDate} />
-                  </Form.Group>
-               </Form>
-
-            </Modal.Body>
-            <Modal.Footer>
-               <Button variant="danger" onClick={handleClose}>
-                  Close
-               </Button>
-               <Button variant="primary" onClick={() => {
+         {showModal && <div className="tw-fixed tw-inset-0 tw-z-50 tw-grid tw-place-items-center tw-bg-slate-950/40 tw-p-4 tw-backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="calendar-modal-title">
+            <button className="tw-absolute tw-inset-0 tw-cursor-default tw-border-0 tw-bg-transparent" onClick={handleClose} aria-label="Close modal" />
+            <div className="tw-relative tw-z-10 tw-w-full tw-max-w-lg tw-rounded-3xl tw-bg-white tw-p-6 tw-shadow-2xl">
+               <div className="tw-mb-6">
+                  <p className="tw-m-0 tw-text-xs tw-font-bold tw-uppercase tw-tracking-[0.18em] tw-text-indigo-600">Academic calendar</p>
+                  <h2 id="calendar-modal-title" className="tw-mb-0 tw-mt-1 tw-font-['Manrope'] tw-text-2xl tw-font-extrabold tw-text-slate-900">Update schedule</h2>
+               </div>
+               <div className="tw-mb-4">
+                  <label htmlFor="calendar-topic">Schedule type</label>
+                  <input id="calendar-topic" className="form-control" type="text" value={topic} onChange={handleTopic} />
+               </div>
+               <div className="tw-mb-6">
+                  <label htmlFor="calendar-date">Schedule date</label>
+                  <input id="calendar-date" className="form-control" type="text" value={inputDate} onChange={handleDate} />
+               </div>
+               <div className="tw-flex tw-justify-end tw-gap-3">
+                  <button className="btn btn-light" onClick={handleClose}>Cancel</button>
+                  <button className="btn btn-primary" onClick={() => {
                   handleClose()
                   handleUpdate()
                }}>
-                  Edit
-               </Button>
-            </Modal.Footer>
-         </Modal>
+                     Save changes
+                  </button>
+               </div>
+            </div>
+         </div>}
       </>
 
    )
