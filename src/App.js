@@ -91,6 +91,7 @@ import AdminNotice from "./Structure/Dashboard/SchoolDashboard/Notices/AdminNoti
 import SubjectRegistration from "./Structure/Dashboard/SchoolDashboard/SubjectRegistration/SubjectRegistration";
 import ListNotice from "./Structure/Dashboard/ViewerDashboard/ViewerDashboardFeatures/Viewer Notice/ViewerNoticeList";
 import SchoolProfile from "./Structure/Dashboard/SchoolDashboard/SchoolProfile/SchoolProfile";
+import FeatureShell from "./Structure/components/FeatureShell/FeatureShell";
 
 
 function App(props) {
@@ -101,6 +102,7 @@ function App(props) {
   return (
     <div className="App">
       <BrowserRouter>
+        <FeatureShell>
         <Routes>
          
 
@@ -285,7 +287,7 @@ function App(props) {
           />
 
         </Routes>
-
+        </FeatureShell>
       </BrowserRouter>
     </div>
   );

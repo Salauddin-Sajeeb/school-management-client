@@ -166,3 +166,75 @@ button, input, select, textarea {
   min-height: 100vh;
   background: #f4f7fb;
 }
+
+/* Legacy feature pages now live inside FeatureShell. Remove their duplicate
+   headers and normalize the old inline-heavy markup into the new system. */
+.modern-route-content [style*="height: 80px"],
+.modern-route-content > div > div:first-child.bg-primary {
+  display: none !important;
+}
+
+.modern-route-content .container {
+  max-width: none;
+  padding: 0;
+}
+
+.modern-route-content .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.modern-route-content h1,
+.modern-route-content h2,
+.modern-route-content h3,
+.modern-route-content h4 {
+  color: #172033 !important;
+  font-family: "Manrope", "DM Sans", sans-serif;
+}
+
+.modern-route-content section {
+  margin: 0 !important;
+  padding-top: 1.5rem !important;
+  padding-bottom: 1.5rem !important;
+}
+
+.modern-route-content .card {
+  margin: 0 0 1.25rem !important;
+}
+
+.modern-route-content .card-header {
+  background: #fff !important;
+}
+
+.modern-route-content .card-tools .btn,
+.modern-route-content .bg-success,
+.modern-route-content .bg-danger,
+.modern-route-content .bg-info,
+.modern-route-content .bg-secondary {
+  min-height: 2.5rem;
+  border: 0;
+  border-radius: 0.75rem;
+  padding: 0.55rem 1rem;
+  font-weight: 700;
+  color: #fff !important;
+}
+
+.modern-route-content .bg-success { background: #059669 !important; }
+.modern-route-content .bg-danger { background: #e11d48 !important; }
+.modern-route-content .bg-info { background: #4f46e5 !important; }
+.modern-route-content .bg-secondary { background: #475569 !important; }
+
+.modern-route-content table {
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+  .modern-route-content {
+    overflow-x: hidden;
+  }
+
+  .modern-route-content .card-body,
+  .modern-route-content .card-header {
+    padding: 1rem;
+  }
+}
