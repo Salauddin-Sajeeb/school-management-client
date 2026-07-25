@@ -1,6 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, BarChart3, BookOpenCheck, CalendarCheck, CheckCircle2, GraduationCap, ShieldCheck, Sparkles, UsersRound } from "lucide-react";
+import {
+  ArrowRight, BarChart3, BellRing, BookOpenCheck, CalendarCheck,
+  CheckCircle2, ClipboardCheck, CreditCard, FileCheck2, GraduationCap,
+  LibraryBig, Megaphone, ShieldCheck, Sparkles, Timer, UserCog, UsersRound,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 import brandLogo from "../../../logo.svg";
 import ThreeScene from "../ThreeScene/ThreeScene";
@@ -15,6 +19,24 @@ const roles = [
   ["School leaders", "Organize people, classes, exams, payments and communication."],
   ["Teachers", "Move from attendance to homework and assessment without losing focus."],
   ["Students & families", "See the day ahead, important updates and learning progress."],
+];
+
+const modules = [
+  { icon: CalendarCheck, title: "Routine & calendar", text: "Keep classes, periods and academic events in one dependable rhythm.", tone: "tw-bg-violet-50 tw-text-violet-700" },
+  { icon: ClipboardCheck, title: "Attendance", text: "Record attendance and make student absence information easy to review.", tone: "tw-bg-emerald-50 tw-text-emerald-700" },
+  { icon: BookOpenCheck, title: "Homework", text: "Create, share, submit and review learning tasks from role-specific views.", tone: "tw-bg-blue-50 tw-text-blue-700" },
+  { icon: FileCheck2, title: "Exams & results", text: "Manage examinations, mark entry, grade sheets and student evaluation.", tone: "tw-bg-amber-50 tw-text-amber-700" },
+  { icon: Megaphone, title: "Notices", text: "Publish school and classroom updates to the people who need them.", tone: "tw-bg-rose-50 tw-text-rose-700" },
+  { icon: CreditCard, title: "Payments", text: "Give students a clear view of due, paid and payment-option information.", tone: "tw-bg-cyan-50 tw-text-cyan-700" },
+  { icon: LibraryBig, title: "Learning resources", text: "Bring together library items, e-books, e-school and important links.", tone: "tw-bg-indigo-50 tw-text-indigo-700" },
+  { icon: UserCog, title: "People & structure", text: "Organize schools, classes, sections, subjects, teachers and students.", tone: "tw-bg-slate-100 tw-text-slate-700" },
+];
+
+const workflow = [
+  ["Plan", "Build the academic structure, calendar and class routine."],
+  ["Teach", "Share homework, resources, notices and daily direction."],
+  ["Track", "Capture attendance, marks, grades and student progress."],
+  ["Connect", "Give every role a focused view of the same school day."],
 ];
 
 const fadeUp = {
@@ -32,6 +54,7 @@ const Home = () => (
         </Link>
         <div className="tw-hidden tw-items-center tw-gap-8 md:tw-flex">
           <a href="#platform" className="tw-text-sm tw-font-semibold tw-text-slate-600 tw-no-underline hover:tw-text-indigo-700">Platform</a>
+          <a href="#modules" className="tw-text-sm tw-font-semibold tw-text-slate-600 tw-no-underline hover:tw-text-indigo-700">Modules</a>
           <a href="#community" className="tw-text-sm tw-font-semibold tw-text-slate-600 tw-no-underline hover:tw-text-indigo-700">Community</a>
           <a href="#why-us" className="tw-text-sm tw-font-semibold tw-text-slate-600 tw-no-underline hover:tw-text-indigo-700">Why ePathshala</a>
         </div>
@@ -66,10 +89,47 @@ const Home = () => (
       </div>
     </section>
 
+    <section className="tw-relative tw-z-20 tw-mx-auto -tw-mt-10 tw-max-w-[1100px] tw-px-5 sm:tw-px-8">
+      <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.55 }} className="tw-grid tw-overflow-hidden tw-rounded-[26px] tw-border tw-border-solid tw-border-slate-200/80 tw-bg-white tw-shadow-2xl sm:tw-grid-cols-3">
+        {[["5", "purpose-built role workspaces"], ["8", "connected core workflows"], ["1", "shared school experience"]].map(([value, label], index) => <div key={label} className={`tw-flex tw-items-center tw-gap-4 tw-p-6 sm:tw-p-7 ${index ? "tw-border-0 tw-border-t tw-border-solid tw-border-slate-100 sm:tw-border-l sm:tw-border-t-0" : ""}`}><strong className="tw-font-['Manrope'] tw-text-4xl tw-font-extrabold tw-text-indigo-700">{value}</strong><span className="tw-max-w-36 tw-text-sm tw-font-semibold tw-leading-5 tw-text-slate-500">{label}</span></div>)}
+      </motion.div>
+    </section>
+
     <section id="platform" className="tw-mx-auto tw-max-w-[1240px] tw-px-5 tw-py-24 sm:tw-px-8">
+      <div className="tw-mx-auto tw-mb-12 tw-max-w-2xl tw-text-center"><p className="tw-m-0 tw-text-xs tw-font-extrabold tw-uppercase tw-tracking-[.2em] tw-text-indigo-600">Designed around the school day</p><h2 className="tw-mb-0 tw-mt-3 tw-font-['Manrope'] tw-text-4xl tw-font-extrabold">Less switching. More meaningful progress.</h2><p className="tw-mb-0 tw-mt-4 tw-leading-7 tw-text-slate-500">The system brings everyday academic and operational work into a consistent, responsive experience.</p></div>
       <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} variants={{ show: { transition: { staggerChildren: 0.08 } } }} className="tw-grid tw-gap-5 md:tw-grid-cols-3">
         {features.map(({ icon: Icon, title, text }) => <motion.article variants={fadeUp} whileHover={{ y: -6 }} key={title} className="tw-rounded-[26px] tw-border tw-border-solid tw-border-slate-200 tw-bg-white tw-p-7 tw-shadow-soft"><span className="tw-grid tw-h-13 tw-w-13 tw-place-items-center tw-rounded-2xl tw-bg-indigo-50 tw-text-indigo-700"><Icon size={25} /></span><h2 className="tw-mb-0 tw-mt-6 tw-font-['Manrope'] tw-text-xl tw-font-extrabold">{title}</h2><p className="tw-mb-0 tw-mt-3 tw-leading-7 tw-text-slate-500">{text}</p></motion.article>)}
       </motion.div>
+    </section>
+
+    <section id="modules" className="tw-bg-slate-950 tw-py-24 tw-text-white">
+      <div className="tw-mx-auto tw-max-w-[1240px] tw-px-5 sm:tw-px-8">
+        <div className="tw-flex tw-flex-col tw-justify-between tw-gap-5 lg:tw-flex-row lg:tw-items-end">
+          <div><p className="tw-m-0 tw-text-xs tw-font-extrabold tw-uppercase tw-tracking-[.2em] tw-text-amber-300">Inside ePathshala</p><h2 className="tw-mb-0 tw-mt-3 tw-max-w-2xl tw-font-['Manrope'] tw-text-4xl tw-font-extrabold">Everything your project already brings together.</h2></div>
+          <p className="tw-m-0 tw-max-w-md tw-leading-7 tw-text-slate-400">Eight connected areas turn scattered school tasks into one coherent digital workspace.</p>
+        </div>
+        <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.1 }} variants={{ show: { transition: { staggerChildren: 0.05 } } }} className="tw-mt-12 tw-grid tw-gap-4 sm:tw-grid-cols-2 lg:tw-grid-cols-4">
+          {modules.map(({ icon: Icon, title, text, tone }) => <motion.article variants={fadeUp} whileHover={{ y: -5 }} key={title} className="tw-rounded-[24px] tw-border tw-border-solid tw-border-white/10 tw-bg-white/[.06] tw-p-6 tw-backdrop-blur-lg"><span className={`tw-grid tw-h-12 tw-w-12 tw-place-items-center tw-rounded-2xl ${tone}`}><Icon size={23} /></span><h3 className="tw-mb-0 tw-mt-5 tw-font-['Manrope'] tw-text-lg tw-font-extrabold">{title}</h3><p className="tw-mb-0 tw-mt-2 tw-text-sm tw-leading-6 tw-text-slate-400">{text}</p></motion.article>)}
+        </motion.div>
+      </div>
+    </section>
+
+    <section className="tw-py-24">
+      <div className="tw-mx-auto tw-grid tw-max-w-[1240px] tw-gap-14 tw-px-5 sm:tw-px-8 lg:tw-grid-cols-[1fr_1.05fr] lg:tw-items-center">
+        <motion.div initial={{ opacity: 0, x: -24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="tw-relative tw-overflow-hidden tw-rounded-[30px] tw-bg-gradient-to-br tw-from-indigo-700 tw-to-cyan-600 tw-p-6 tw-shadow-2xl sm:tw-p-9">
+          <div className="tw-absolute -tw-right-16 -tw-top-16 tw-h-48 tw-w-48 tw-rounded-full tw-bg-white/10 tw-blur-2xl" />
+          <div className="tw-relative tw-rounded-[22px] tw-bg-white tw-p-5">
+            <div className="tw-flex tw-items-center tw-justify-between"><div><p className="tw-m-0 tw-text-[10px] tw-font-extrabold tw-uppercase tw-tracking-widest tw-text-indigo-600">Monday overview</p><h3 className="tw-mb-0 tw-mt-1 tw-font-['Manrope'] tw-text-xl tw-font-extrabold">School pulse</h3></div><BellRing className="tw-text-indigo-600" /></div>
+            <div className="tw-mt-5 tw-h-2 tw-overflow-hidden tw-rounded-full tw-bg-slate-100"><motion.div initial={{ width: 0 }} whileInView={{ width: "86%" }} viewport={{ once: true }} transition={{ duration: 1 }} className="tw-h-full tw-rounded-full tw-bg-gradient-to-r tw-from-indigo-600 tw-to-cyan-500" /></div>
+            <div className="tw-mt-5 tw-grid tw-gap-3">{[["08:30", "Morning attendance", "Ready"], ["10:15", "Science homework", "Published"], ["13:00", "Academic calendar", "Updated"]].map(([time, item, status]) => <div key={item} className="tw-flex tw-items-center tw-gap-3 tw-rounded-xl tw-bg-slate-50 tw-p-3"><span className="tw-text-xs tw-font-extrabold tw-text-slate-400">{time}</span><span className="tw-flex-1 tw-text-sm tw-font-bold">{item}</span><span className="tw-rounded-full tw-bg-emerald-100 tw-px-2.5 tw-py-1 tw-text-[10px] tw-font-extrabold tw-text-emerald-700">{status}</span></div>)}</div>
+          </div>
+        </motion.div>
+        <div>
+          <p className="tw-m-0 tw-flex tw-items-center tw-gap-2 tw-text-xs tw-font-extrabold tw-uppercase tw-tracking-[.2em] tw-text-indigo-600"><Timer size={16} /> From plan to progress</p>
+          <h2 className="tw-mb-0 tw-mt-3 tw-font-['Manrope'] tw-text-4xl tw-font-extrabold">A connected flow for every academic day.</h2>
+          <div className="tw-mt-8 tw-grid tw-gap-6">{workflow.map(([title, text], index) => <motion.div initial={{ opacity: 0, x: 15 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.08 }} key={title} className="tw-flex tw-gap-4"><span className="tw-grid tw-h-10 tw-w-10 tw-shrink-0 tw-place-items-center tw-rounded-xl tw-bg-amber-100 tw-font-extrabold tw-text-amber-700">{index + 1}</span><div><h3 className="tw-m-0 tw-font-['Manrope'] tw-text-lg tw-font-extrabold">{title}</h3><p className="tw-mb-0 tw-mt-1 tw-leading-6 tw-text-slate-500">{text}</p></div></motion.div>)}</div>
+        </div>
+      </div>
     </section>
 
     <section id="community" className="tw-bg-white tw-py-24">
