@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import logo from "./logo.svg";
 import "./App.css";
 
 import TeacherDashboard from "./Structure/Dashboard/TeacherDashboard/TeacherDashboard";
@@ -176,7 +175,7 @@ function App(props) {
           <Route path="/newExam" element={<CreateNewExam />} />
           <Route
             path="/"
-            element={<Login setUser={[setUser_code, setUser_type]} />}
+            element={<Home />}
           />
            <Route
             path="/login"

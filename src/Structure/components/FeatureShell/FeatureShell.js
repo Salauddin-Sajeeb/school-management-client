@@ -5,6 +5,7 @@ import {
   Home, LogOut, Menu, School, UsersRound, X,
 } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
+import brandLogo from "../../../logo.svg";
 
 const dashboardPaths = new Set([
   "/", "/login", "/student-admin", "/teacher-admin", "/school-admin",
@@ -50,10 +51,10 @@ const FeatureShell = ({ children }) => {
 
   const Navigation = () => (
     <>
-      <div className="tw-flex tw-h-20 tw-items-center tw-gap-3 tw-border-0 tw-border-b tw-border-solid tw-border-slate-100 tw-px-5">
-        <span className="tw-grid tw-h-11 tw-w-11 tw-place-items-center tw-rounded-2xl tw-bg-gradient-to-br tw-from-indigo-600 tw-to-cyan-500 tw-text-white"><School size={21} /></span>
-        <div><p className="tw-m-0 tw-font-['Manrope'] tw-font-extrabold tw-text-slate-950">EduFlow</p><p className="tw-m-0 tw-text-[10px] tw-font-bold tw-uppercase tw-tracking-[0.16em] tw-text-slate-400">{config.role}</p></div>
-      </div>
+      <button onClick={() => { navigate("/"); setOpen(false); }} className="tw-flex tw-h-20 tw-w-full tw-items-center tw-gap-3 tw-border-0 tw-border-b tw-border-solid tw-border-slate-100 tw-bg-transparent tw-px-5 tw-text-left">
+        <img src={brandLogo} alt="ePathshala" className="tw-h-12 tw-w-12 tw-object-contain" />
+        <div><p className="tw-m-0 tw-font-['Manrope'] tw-font-extrabold tw-text-slate-950">ePathshala</p><p className="tw-m-0 tw-text-[10px] tw-font-bold tw-uppercase tw-tracking-[0.16em] tw-text-slate-400">{config.role}</p></div>
+      </button>
       <nav className="tw-flex-1 tw-p-3">
         <button onClick={() => navigate(config.home)} className="tw-mb-4 tw-flex tw-w-full tw-items-center tw-gap-3 tw-rounded-xl tw-border-0 tw-bg-indigo-50 tw-px-3 tw-py-3 tw-text-left tw-text-sm tw-font-bold tw-text-indigo-700"><Home size={18} /> Dashboard</button>
         <p className="tw-mb-2 tw-px-3 tw-text-[10px] tw-font-bold tw-uppercase tw-tracking-[0.18em] tw-text-slate-400">Quick access</p>
@@ -70,7 +71,7 @@ const FeatureShell = ({ children }) => {
       <div className="lg:tw-pl-[240px]">
         <header className="tw-sticky tw-top-0 tw-z-20 tw-flex tw-h-20 tw-items-center tw-justify-between tw-border-0 tw-border-b tw-border-solid tw-border-slate-200 tw-bg-white/90 tw-px-4 tw-backdrop-blur-xl sm:tw-px-7">
           <div className="tw-flex tw-items-center tw-gap-3"><button onClick={() => setOpen(true)} className="tw-grid tw-h-10 tw-w-10 tw-place-items-center tw-rounded-xl tw-border tw-border-solid tw-border-slate-200 tw-bg-white lg:tw-hidden"><Menu size={20} /></button><button onClick={() => navigate(-1)} className="tw-grid tw-h-10 tw-w-10 tw-place-items-center tw-rounded-xl tw-border tw-border-solid tw-border-slate-200 tw-bg-white tw-text-slate-500"><ArrowLeft size={19} /></button><div><p className="tw-m-0 tw-text-[10px] tw-font-bold tw-uppercase tw-tracking-[0.18em] tw-text-indigo-600">{config.role} workspace</p><h1 className="tw-m-0 tw-font-['Manrope'] tw-text-lg tw-font-extrabold tw-text-slate-950 sm:tw-text-xl">{title}</h1></div></div>
-          <button className="tw-grid tw-h-10 tw-w-10 tw-place-items-center tw-rounded-xl tw-border tw-border-solid tw-border-slate-200 tw-bg-white tw-text-slate-500"><Bell size={18} /></button>
+          <div className="tw-flex tw-items-center tw-gap-2"><button className="tw-grid tw-h-10 tw-w-10 tw-place-items-center tw-rounded-xl tw-border tw-border-solid tw-border-slate-200 tw-bg-white tw-text-slate-500"><Bell size={18} /></button><button onClick={logout} title="Sign out" aria-label="Sign out" className="tw-grid tw-h-10 tw-w-10 tw-place-items-center tw-rounded-xl tw-border tw-border-solid tw-border-rose-100 tw-bg-rose-50 tw-text-rose-600 hover:tw-bg-rose-100"><LogOut size={18} /></button></div>
         </header>
         <main className="modern-route-content tw-mx-auto tw-w-full tw-max-w-[1500px] tw-p-4 sm:tw-p-7 lg:tw-p-8"><motion.div key={location.pathname} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>{children}</motion.div></main>
       </div>

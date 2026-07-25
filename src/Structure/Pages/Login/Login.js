@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Eye, EyeOff, GraduationCap, LockKeyhole, ShieldCheck, UserRound } from "lucide-react";
+import { ArrowRight, Eye, EyeOff, LockKeyhole, ShieldCheck, UserRound } from "lucide-react";
+import brandLogo from "../../../logo.svg";
 import { useNavigate } from "react-router-dom";
 import ThreeScene from "../../components/ThreeScene/ThreeScene";
 
@@ -113,10 +114,10 @@ const Login = ({ setUser }) => {
         <ThreeScene />
         <div className="tw-absolute tw-inset-0 tw-bg-gradient-to-t tw-from-indigo-950/60 tw-via-transparent tw-to-transparent" />
         <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} className="tw-relative tw-z-10 tw-flex tw-items-center tw-gap-3">
-          <span className="tw-grid tw-h-12 tw-w-12 tw-place-items-center tw-rounded-2xl tw-bg-white/15 tw-backdrop-blur-xl"><GraduationCap size={25} /></span>
+          <span className="tw-grid tw-h-14 tw-w-14 tw-place-items-center tw-rounded-2xl tw-bg-white tw-p-1 tw-shadow-lg"><img src={brandLogo} alt="" className="tw-h-full tw-w-full tw-object-contain" /></span>
           <div>
-            <p className="tw-m-0 tw-font-['Manrope'] tw-text-xl tw-font-extrabold">EduFlow</p>
-            <p className="tw-m-0 tw-text-xs tw-font-semibold tw-uppercase tw-tracking-[0.2em] tw-text-indigo-200">School OS</p>
+            <p className="tw-m-0 tw-font-['Manrope'] tw-text-xl tw-font-extrabold">ePathshala</p>
+            <p className="tw-m-0 tw-text-xs tw-font-semibold tw-uppercase tw-tracking-[0.2em] tw-text-indigo-200">School Management</p>
           </div>
         </motion.div>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="tw-relative tw-z-10 tw-max-w-xl">
@@ -137,8 +138,8 @@ const Login = ({ setUser }) => {
         <div className="tw-absolute tw-left-0 tw-top-0 tw-h-52 tw-w-52 tw-rounded-full tw-bg-indigo-100/60 tw-blur-3xl lg:tw-hidden" />
         <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }} className="tw-relative tw-z-10 tw-w-full tw-max-w-[440px]">
           <div className="tw-mb-9 tw-flex tw-items-center tw-gap-3 lg:tw-hidden">
-            <span className="tw-grid tw-h-11 tw-w-11 tw-place-items-center tw-rounded-2xl tw-bg-indigo-600 tw-text-white"><GraduationCap size={23} /></span>
-            <span className="tw-font-['Manrope'] tw-text-xl tw-font-extrabold">EduFlow</span>
+            <img src={brandLogo} alt="ePathshala" className="tw-h-14 tw-w-14 tw-object-contain" />
+            <span className="tw-font-['Manrope'] tw-text-xl tw-font-extrabold">ePathshala</span>
           </div>
           <p className="tw-mb-2 tw-text-xs tw-font-bold tw-uppercase tw-tracking-[0.2em] tw-text-indigo-600">Welcome back</p>
           <h2 className="tw-m-0 tw-font-['Manrope'] tw-text-3xl tw-font-extrabold tw-text-slate-950 sm:tw-text-4xl">Sign in to your school</h2>

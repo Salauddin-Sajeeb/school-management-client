@@ -7,24 +7,22 @@ import {
   LogOut,
   Menu,
   Search,
-  Sparkles,
   UserRound,
   X,
 } from "lucide-react";
+import brandLogo from "../../../logo.svg";
 
 const MotionButton = motion.button;
 
 const NavContent = ({ actions, activeLabel, onNavigate, onLogout }) => (
   <>
-    <div className="tw-flex tw-h-20 tw-items-center tw-gap-3 tw-px-5">
-      <div className="tw-grid tw-h-11 tw-w-11 tw-place-items-center tw-rounded-2xl tw-bg-gradient-to-br tw-from-indigo-500 tw-to-cyan-400 tw-text-white tw-shadow-lg">
-        <Sparkles size={21} />
-      </div>
+    <button onClick={() => onNavigate("/")} className="tw-flex tw-h-20 tw-w-full tw-items-center tw-gap-3 tw-border-0 tw-bg-transparent tw-px-5 tw-text-left">
+      <img src={brandLogo} alt="ePathshala home" className="tw-h-12 tw-w-12 tw-object-contain" />
       <div>
-        <p className="tw-m-0 tw-font-['Manrope'] tw-text-[17px] tw-font-extrabold tw-text-slate-900">EduFlow</p>
-        <p className="tw-m-0 tw-text-[11px] tw-font-semibold tw-uppercase tw-tracking-[0.18em] tw-text-slate-400">School OS</p>
+        <p className="tw-m-0 tw-font-['Manrope'] tw-text-[17px] tw-font-extrabold tw-text-slate-900">ePathshala</p>
+        <p className="tw-m-0 tw-text-[11px] tw-font-semibold tw-uppercase tw-tracking-[0.18em] tw-text-slate-400">School Management</p>
       </div>
-    </div>
+    </button>
     <nav className="tw-flex-1 tw-overflow-y-auto tw-px-3 tw-py-4">
       <p className="tw-mb-3 tw-px-3 tw-text-[10px] tw-font-bold tw-uppercase tw-tracking-[0.2em] tw-text-slate-400">
         Workspace
@@ -140,6 +138,9 @@ const ModernDashboard = ({
                 <span className="tw-block tw-max-w-32 tw-truncate tw-text-xs tw-font-bold">{userName || role}</span>
                 <span className="tw-block tw-text-[10px] tw-font-semibold tw-uppercase tw-tracking-wider tw-text-slate-400">{role}</span>
               </span>
+            </button>
+            <button onClick={logout} title="Sign out" aria-label="Sign out" className="tw-grid tw-h-10 tw-w-10 tw-place-items-center tw-rounded-xl tw-border tw-border-solid tw-border-rose-100 tw-bg-rose-50 tw-text-rose-600 hover:tw-bg-rose-100">
+              <LogOut size={18} />
             </button>
           </div>
         </header>
