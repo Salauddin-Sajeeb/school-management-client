@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowRight, BarChart3, BellRing, BookOpenCheck, CalendarCheck,
-  CheckCircle2, ClipboardCheck, CreditCard, FileCheck2, GraduationCap,
-  LibraryBig, Megaphone, ShieldCheck, Sparkles, Timer, UserCog, UsersRound,
+  CheckCircle2, ChevronRight, ClipboardCheck, CreditCard, FileCheck2,
+  GraduationCap, Home as HomeIcon, LibraryBig, Megaphone, ShieldCheck,
+  Sparkles, Timer, UserCog, UsersRound,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import brandLogo from "../../../logo.svg";
@@ -53,6 +54,14 @@ const questions = [
   ["Will it work on phones and tablets?", "The redesigned interface uses responsive layouts, mobile navigation and touch-friendly controls across the home page and shared application shell."],
 ];
 
+const demoViews = [
+  { key: "dashboard", label: "Dashboard", icon: HomeIcon, title: "Good morning, Ayesha", subtitle: "Here is what is happening across your school today." },
+  { key: "attendance", label: "Attendance", icon: ClipboardCheck, title: "Attendance overview", subtitle: "Follow daily presence and spot students needing attention." },
+  { key: "routine", label: "Routine", icon: CalendarCheck, title: "Weekly class routine", subtitle: "Keep periods, rooms and teachers aligned throughout the week." },
+  { key: "homework", label: "Homework", icon: BookOpenCheck, title: "Homework workspace", subtitle: "Publish learning tasks and follow the submission journey." },
+  { key: "results", label: "Results", icon: BarChart3, title: "Results & progress", subtitle: "Review assessment performance in a clear student-focused view." },
+];
+
 const fadeUp = {
   hidden: { opacity: 0, y: 22 },
   show: { opacity: 1, y: 0 },
@@ -60,7 +69,9 @@ const fadeUp = {
 
 const Home = () => {
   const [activeRole, setActiveRole] = useState(0);
+  const [activeDemo, setActiveDemo] = useState("dashboard");
   const role = roleShowcases[activeRole];
+  const demo = demoViews.find(({ key }) => key === activeDemo);
 
   return (
   <main className="tw-min-h-screen tw-overflow-hidden tw-bg-[#f7f8fc] tw-text-slate-950">
@@ -73,6 +84,7 @@ const Home = () => {
         <div className="tw-hidden tw-items-center tw-gap-8 md:tw-flex">
           <a href="#platform" className="tw-text-sm tw-font-semibold tw-text-slate-600 tw-no-underline hover:tw-text-indigo-700">Platform</a>
           <a href="#modules" className="tw-text-sm tw-font-semibold tw-text-slate-600 tw-no-underline hover:tw-text-indigo-700">Modules</a>
+          <a href="#demo" className="tw-text-sm tw-font-semibold tw-text-slate-600 tw-no-underline hover:tw-text-indigo-700">Live preview</a>
           <a href="#community" className="tw-text-sm tw-font-semibold tw-text-slate-600 tw-no-underline hover:tw-text-indigo-700">Community</a>
           <a href="#why-us" className="tw-text-sm tw-font-semibold tw-text-slate-600 tw-no-underline hover:tw-text-indigo-700">Why ePathshala</a>
         </div>
@@ -149,6 +161,51 @@ const Home = () => {
           <h2 className="tw-mb-0 tw-mt-3 tw-font-['Manrope'] tw-text-4xl tw-font-extrabold">A connected flow for every academic day.</h2>
           <div className="tw-mt-8 tw-grid tw-gap-6">{workflow.map(([title, text], index) => <motion.div initial={{ opacity: 0, x: 15 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.08 }} key={title} className="tw-flex tw-gap-4"><span className="tw-grid tw-h-10 tw-w-10 tw-shrink-0 tw-place-items-center tw-rounded-xl tw-bg-amber-100 tw-font-extrabold tw-text-amber-700">{index + 1}</span><div><h3 className="tw-m-0 tw-font-['Manrope'] tw-text-lg tw-font-extrabold">{title}</h3><p className="tw-mb-0 tw-mt-1 tw-leading-6 tw-text-slate-500">{text}</p></div></motion.div>)}</div>
         </div>
+      </div>
+    </section>
+
+    <section id="demo" className="tw-relative tw-overflow-hidden tw-bg-white tw-py-24">
+      <div className="tw-absolute tw-left-1/2 tw-top-20 tw-h-96 tw-w-96 -tw-translate-x-1/2 tw-rounded-full tw-bg-indigo-100/60 tw-blur-3xl" />
+      <div className="tw-relative tw-z-10 tw-mx-auto tw-max-w-[1320px] tw-px-4 sm:tw-px-8">
+        <div className="tw-mx-auto tw-max-w-3xl tw-text-center">
+          <span className="tw-inline-flex tw-items-center tw-gap-2 tw-rounded-full tw-bg-emerald-50 tw-px-4 tw-py-2 tw-text-xs tw-font-extrabold tw-uppercase tw-tracking-[.18em] tw-text-emerald-700"><span className="tw-h-2 tw-w-2 tw-animate-pulse tw-rounded-full tw-bg-emerald-500" /> Interactive product tour</span>
+          <h2 className="tw-mb-0 tw-mt-5 tw-font-['Manrope'] tw-text-4xl tw-font-extrabold sm:tw-text-5xl">See what is waiting inside.</h2>
+          <p className="tw-mb-0 tw-mt-4 tw-text-base tw-leading-7 tw-text-slate-500">Explore five core areas using a realistic, privacy-safe preview. No account or login required.</p>
+        </div>
+
+        <div className="tw-mx-auto tw-mt-9 tw-flex tw-max-w-4xl tw-gap-2 tw-overflow-x-auto tw-pb-2">
+          {demoViews.map(({ key, label, icon: Icon }) => <button key={key} onClick={() => setActiveDemo(key)} className={`tw-flex tw-shrink-0 tw-items-center tw-gap-2 tw-rounded-xl tw-border tw-border-solid tw-px-4 tw-py-3 tw-text-sm tw-font-extrabold tw-transition ${activeDemo === key ? "tw-border-indigo-600 tw-bg-indigo-600 tw-text-white tw-shadow-lg tw-shadow-indigo-200" : "tw-border-slate-200 tw-bg-white tw-text-slate-500 hover:tw-border-indigo-200 hover:tw-text-indigo-700"}`}><Icon size={17} />{label}</button>)}
+        </div>
+
+        <motion.div layout className="tw-mt-7 tw-overflow-hidden tw-rounded-[26px] tw-border tw-border-solid tw-border-slate-200 tw-bg-white tw-shadow-2xl">
+          <div className="tw-flex tw-h-12 tw-items-center tw-gap-2 tw-border-0 tw-border-b tw-border-solid tw-border-slate-200 tw-bg-slate-50 tw-px-4">
+            <span className="tw-h-3 tw-w-3 tw-rounded-full tw-bg-rose-400" /><span className="tw-h-3 tw-w-3 tw-rounded-full tw-bg-amber-400" /><span className="tw-h-3 tw-w-3 tw-rounded-full tw-bg-emerald-400" />
+            <div className="tw-mx-auto tw-hidden tw-w-1/2 tw-rounded-lg tw-bg-white tw-px-4 tw-py-1.5 tw-text-center tw-text-[10px] tw-font-semibold tw-text-slate-400 sm:tw-block">app.epathshala.edu/{activeDemo}</div>
+          </div>
+          <div className="tw-flex tw-min-h-[610px] tw-bg-[#f4f7fb]">
+            <aside className="tw-hidden tw-w-56 tw-shrink-0 tw-border-0 tw-border-r tw-border-solid tw-border-slate-200 tw-bg-white tw-p-4 md:tw-block">
+              <div className="tw-flex tw-items-center tw-gap-2 tw-px-2 tw-py-3"><img src={brandLogo} alt="" className="tw-h-10 tw-w-10 tw-object-contain" /><div><strong className="tw-block tw-text-sm">ePathshala</strong><span className="tw-text-[9px] tw-font-bold tw-uppercase tw-tracking-wider tw-text-slate-400">School admin</span></div></div>
+              <div className="tw-mt-5 tw-grid tw-gap-1">{demoViews.map(({ key, label, icon: Icon }) => <button key={key} onClick={() => setActiveDemo(key)} className={`tw-flex tw-items-center tw-gap-3 tw-rounded-xl tw-border-0 tw-px-3 tw-py-3 tw-text-left tw-text-xs tw-font-bold ${activeDemo === key ? "tw-bg-indigo-50 tw-text-indigo-700" : "tw-bg-transparent tw-text-slate-500"}`}><Icon size={16} />{label}</button>)}</div>
+            </aside>
+            <div className="tw-min-w-0 tw-flex-1">
+              <header className="tw-flex tw-h-16 tw-items-center tw-justify-between tw-border-0 tw-border-b tw-border-solid tw-border-slate-200 tw-bg-white tw-px-4 sm:tw-px-6"><div><span className="tw-block tw-text-[9px] tw-font-extrabold tw-uppercase tw-tracking-widest tw-text-indigo-600">School admin workspace</span><strong className="tw-block tw-text-sm sm:tw-text-base">{demo.label}</strong></div><span className="tw-grid tw-h-9 tw-w-9 tw-place-items-center tw-rounded-xl tw-bg-indigo-100 tw-text-xs tw-font-extrabold tw-text-indigo-700">AS</span></header>
+              <motion.div key={activeDemo} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="tw-p-4 sm:tw-p-6">
+                <div><h3 className="tw-m-0 tw-font-['Manrope'] tw-text-xl tw-font-extrabold sm:tw-text-2xl">{demo.title}</h3><p className="tw-mb-0 tw-mt-1 tw-text-xs tw-text-slate-500 sm:tw-text-sm">{demo.subtitle}</p></div>
+
+                {activeDemo === "dashboard" && <div className="tw-mt-6"><div className="tw-grid tw-grid-cols-2 tw-gap-3 xl:tw-grid-cols-4">{[["1,248", "Active students", "tw-bg-indigo-100 tw-text-indigo-700"], ["78", "Teaching staff", "tw-bg-cyan-100 tw-text-cyan-700"], ["94%", "Attendance today", "tw-bg-emerald-100 tw-text-emerald-700"], ["12", "New notices", "tw-bg-amber-100 tw-text-amber-700"]].map(([value, label, tone]) => <div key={label} className="tw-rounded-2xl tw-bg-white tw-p-4 tw-shadow-sm"><span className={`tw-mb-4 tw-block tw-h-2 tw-w-8 tw-rounded-full ${tone.split(" ")[0]}`} /><strong className="tw-block tw-text-2xl tw-font-extrabold">{value}</strong><span className="tw-text-[11px] tw-font-semibold tw-text-slate-400">{label}</span></div>)}</div><div className="tw-mt-4 tw-grid tw-gap-4 xl:tw-grid-cols-[1.5fr_1fr]"><div className="tw-rounded-2xl tw-bg-white tw-p-5 tw-shadow-sm"><strong className="tw-text-sm">Weekly attendance</strong><div className="tw-mt-7 tw-flex tw-h-36 tw-items-end tw-justify-around tw-gap-3">{[72, 88, 80, 94, 86].map((height, index) => <div key={height + index} className="tw-flex tw-h-full tw-flex-1 tw-flex-col tw-justify-end tw-gap-2"><motion.div initial={{ height: 0 }} animate={{ height: `${height}%` }} className="tw-rounded-t-lg tw-bg-gradient-to-t tw-from-indigo-600 tw-to-cyan-400" /><span className="tw-text-center tw-text-[9px] tw-font-bold tw-text-slate-400">{["SUN", "MON", "TUE", "WED", "THU"][index]}</span></div>)}</div></div><div className="tw-rounded-2xl tw-bg-slate-950 tw-p-5 tw-text-white"><span className="tw-text-[10px] tw-font-bold tw-uppercase tw-tracking-widest tw-text-amber-300">Next event</span><h4 className="tw-mb-0 tw-mt-3 tw-text-lg tw-font-extrabold">Parent–teacher meeting</h4><p className="tw-mb-0 tw-mt-2 tw-text-xs tw-leading-5 tw-text-slate-400">Saturday · 10:00 AM<br />School auditorium</p></div></div></div>}
+
+                {activeDemo === "attendance" && <div className="tw-mt-6 tw-overflow-hidden tw-rounded-2xl tw-bg-white tw-shadow-sm"><div className="tw-grid tw-grid-cols-[1.3fr_.7fr_.7fr] tw-bg-slate-50 tw-p-4 tw-text-[10px] tw-font-extrabold tw-uppercase tw-tracking-wider tw-text-slate-400"><span>Class</span><span>Present</span><span>Status</span></div>{[["Grade 6 · A", "36 / 38", "95%"], ["Grade 7 · B", "31 / 35", "89%"], ["Grade 8 · A", "39 / 40", "98%"], ["Grade 9 · C", "32 / 37", "86%"]].map(([className, count, percent]) => <div key={className} className="tw-grid tw-grid-cols-[1.3fr_.7fr_.7fr] tw-items-center tw-border-0 tw-border-t tw-border-solid tw-border-slate-100 tw-p-4 tw-text-xs"><strong>{className}</strong><span className="tw-text-slate-500">{count}</span><span className="tw-font-extrabold tw-text-emerald-600">{percent}</span></div>)}</div>}
+
+                {activeDemo === "routine" && <div className="tw-mt-6 tw-overflow-x-auto tw-rounded-2xl tw-bg-white tw-p-4 tw-shadow-sm"><div className="tw-grid tw-min-w-[620px] tw-grid-cols-5 tw-gap-2">{["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"].map((day, dayIndex) => <div key={day}><strong className="tw-mb-3 tw-block tw-text-center tw-text-xs">{day}</strong>{["Mathematics", "English", "Science"].map((subject, index) => <div key={subject} className={`tw-mb-2 tw-rounded-xl tw-p-3 ${["tw-bg-indigo-50 tw-text-indigo-800", "tw-bg-amber-50 tw-text-amber-800", "tw-bg-cyan-50 tw-text-cyan-800"][(index + dayIndex) % 3]}`}><strong className="tw-block tw-text-[11px]">{subject}</strong><span className="tw-text-[9px]">{9 + index}:00 · R{dayIndex + 1}0{index + 1}</span></div>)}</div>)}</div></div>}
+
+                {activeDemo === "homework" && <div className="tw-mt-6 tw-grid tw-gap-3 sm:tw-grid-cols-2">{[["Physics", "Chapter 4 exercises", "Due tomorrow", "18 / 24"], ["English", "Essay: My community", "Due 28 July", "21 / 24"], ["Mathematics", "Algebra worksheet", "Due 30 July", "16 / 24"], ["ICT", "Presentation slides", "Due 02 August", "12 / 24"]].map(([subject, task, due, submitted]) => <div key={task} className="tw-rounded-2xl tw-bg-white tw-p-4 tw-shadow-sm"><span className="tw-text-[10px] tw-font-extrabold tw-uppercase tw-tracking-wider tw-text-indigo-600">{subject}</span><h4 className="tw-mb-0 tw-mt-2 tw-text-sm tw-font-extrabold">{task}</h4><div className="tw-mt-5 tw-flex tw-justify-between tw-text-[10px] tw-font-bold tw-text-slate-400"><span>{due}</span><span>{submitted} submitted</span></div></div>)}</div>}
+
+                {activeDemo === "results" && <div className="tw-mt-6 tw-grid tw-gap-4 lg:tw-grid-cols-[1fr_1.4fr]"><div className="tw-rounded-2xl tw-bg-gradient-to-br tw-from-indigo-700 tw-to-cyan-500 tw-p-6 tw-text-white"><span className="tw-text-[10px] tw-font-bold tw-uppercase tw-tracking-widest tw-text-indigo-100">Term average</span><strong className="tw-mt-3 tw-block tw-text-5xl tw-font-extrabold">86%</strong><span className="tw-mt-4 tw-inline-flex tw-rounded-full tw-bg-white/15 tw-px-3 tw-py-1 tw-text-[10px] tw-font-bold">Strong progress</span></div><div className="tw-rounded-2xl tw-bg-white tw-p-5 tw-shadow-sm"><strong className="tw-text-sm">Subject performance</strong><div className="tw-mt-5 tw-grid tw-gap-4">{[["Mathematics", 88], ["English", 82], ["Science", 91], ["ICT", 84]].map(([subject, score]) => <div key={subject}><div className="tw-mb-1 tw-flex tw-justify-between tw-text-[10px] tw-font-bold"><span>{subject}</span><span>{score}%</span></div><div className="tw-h-2 tw-rounded-full tw-bg-slate-100"><motion.div initial={{ width: 0 }} animate={{ width: `${score}%` }} className="tw-h-full tw-rounded-full tw-bg-indigo-600" /></div></div>)}</div></div></div>}
+              </motion.div>
+            </div>
+          </div>
+          <div className="tw-flex tw-flex-col tw-items-start tw-justify-between tw-gap-3 tw-border-0 tw-border-t tw-border-solid tw-border-slate-200 tw-bg-white tw-p-4 sm:tw-flex-row sm:tw-items-center sm:tw-px-6"><span className="tw-text-xs tw-font-semibold tw-text-slate-400">Preview data is illustrative and contains no real student information.</span><Link to="/login" className="tw-inline-flex tw-items-center tw-gap-2 tw-text-sm tw-font-extrabold tw-text-indigo-700 tw-no-underline">Open your real workspace <ChevronRight size={17} /></Link></div>
+        </motion.div>
       </div>
     </section>
 
