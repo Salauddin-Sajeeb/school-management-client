@@ -85,7 +85,7 @@ const AcademicCalender = () => {
         <div className="tw-relative tw-z-10 tw-flex tw-flex-col tw-justify-between tw-gap-5 sm:tw-flex-row sm:tw-items-center">
           <div>
             <p className="tw-m-0 tw-text-xs tw-font-bold tw-uppercase tw-tracking-[0.18em] tw-text-indigo-100">School planning</p>
-            <h2 className="tw-mb-0 tw-mt-2 tw-font-['Manrope'] tw-text-3xl tw-font-extrabold !tw-text-white">Academic calendar</h2>
+            <h2 className="route-hero-title tw-mb-0 tw-mt-2 tw-font-['Manrope'] tw-text-3xl tw-font-extrabold tw-text-white">Academic calendar</h2>
             <p className="tw-mb-0 tw-mt-2 tw-text-sm tw-text-indigo-100">Manage important dates, examinations, holidays and school events.</p>
           </div>
           <button onClick={() => setFormOpen(true)} className="tw-inline-flex tw-h-12 tw-items-center tw-justify-center tw-gap-2 tw-rounded-xl tw-border-0 tw-bg-white tw-px-5 tw-font-bold tw-text-indigo-700 tw-shadow-lg"><Plus size={18} /> Add event</button>
